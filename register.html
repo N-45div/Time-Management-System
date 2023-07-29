@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        body{
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            margin: 0px;
+            padding-left: 35px;
+            background-color: aliceblue;
+
+        }
+    </style>
+
+</head>
+<body>
+            <h3>Login via...</h3>
+            <a href="BossStart.html" class="btn btn-primary position-relative">Reporting Officer</a>
+            <a href="Stafflogin.html" class="btn btn-primary position-relative">Staff Member</a>
+
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyCtH_VX5Pd8yKC71Q2om3r4WYkvHvl-Yv0",
+      authDomain: "lea-dev-db7bc.firebaseapp.com",
+      databaseURL: "https://lea-dev-db7bc-default-rtdb.firebaseio.com",
+      projectId: "lea-dev-db7bc",
+      storageBucket: "lea-dev-db7bc.appspot.com",
+      messagingSenderId: "198303907659",
+      appId: "1:198303907659:web:46c10480201aca5aa5b2ce",
+      measurementId: "G-6QVFFVJVT2"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    
+    import {getDatabase,ref,set,child,get} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+    const db = getDatabase();
+  </script>
+</html>

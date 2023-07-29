@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        
+    </style>
+
+</head>
+<body>
+        <div class="center">
+            <h1>Boss Login</h1>
+            <input type="text" placeholder="username" id="userInp" class="form-control mb-3">
+            <input type="text" placeholder="password" id="passInp" class="form-control mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">keep me logged in</label>
+              </div>
+            <button type="text" id="sub_btn" class="btn w-100 btn-outline-primary mb-3">Login</button>
+        </div>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    
+    const firebaseConfig = {
+    apiKey: "AIzaSyBYvXKpYca8HNsRxzF5DtwUOwBbmmGl8_4",
+    authDomain: "leavdev.firebaseapp.com",
+    projectId: "leavdev",
+    storageBucket: "leavdev.appspot.com",
+    messagingSenderId: "315047366295",
+    appId: "1:315047366295:web:c8639d9659c35e00e723d2"
+  };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    
+    import {getDatabase,ref,set,child,get} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+    const db = getDatabase();
+
+    var username = document.querySelector("#userInp");
+    var pass = document.querySelector("#passInp");
+    var submit = document.querySelector("#sub_btn");
+
+    function AuthenticateUser(){
+        const dbRef = ref(db);
+        get(child(dbRef,"Boss/"+username.value)).then((snapshot) => {
+            if(snapshot.exists()){
+                let dbpass = snapshot.val().password;
+                if(dbpass == pass.value){
+                    login(snapshot.val());
+                }
+
+                else{
+                alert("user does not exist")
+                }
+            }
+
+            else{
+                alert("user invalid")
+            }
+        })
+    }
+
+    function login(Boss){
+
+        let KeepLoggedIn = document.querySelector('#flexSwitchCheckDefault').checked;
+
+        if(!KeepLoggedIn){
+            sessionStorage.setItem('Boss',JSON.stringify(Boss));
+            window.location="DGMbosshome.html"
+        }
+
+        else{
+            localStorage.setItem('keepLoggedIn','yes');
+            localStorage.setItem('Boss',JSON.stringify(Boss));
+            window.location="DGMbosshome.html"
+        }
+
+
+    }
+
+    submit.addEventListener('click',AuthenticateUser);
+
+
+  </script>
+</html>
